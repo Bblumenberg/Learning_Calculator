@@ -1,0 +1,84 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		B534EA071B68A77B00CB2D56 /* Subtract.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Subtract.java; sourceTree = "<group>"; };
+		B534EA081B68A88C00CB2D56 /* Creator.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Creator.java; sourceTree = "<group>"; };
+		B596E53A1B6747D5000D1074 /* Main.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Main.java; sourceTree = "<group>"; };
+		B596E53B1B674C22000D1074 /* Add.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Add.java; sourceTree = "<group>"; };
+		B596E53C1B674C4E000D1074 /* Operation.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Operation.java; sourceTree = "<group>"; };
+		B596E5401B674CCA000D1074 /* Calculator.java */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.java; path = Calculator.java; sourceTree = "<group>"; };
+		B596E5421B674EA2000D1074 /* operations.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = operations.txt; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		B596E5331B6747CB000D1074 = {
+			isa = PBXGroup;
+			children = (
+				B596E53A1B6747D5000D1074 /* Main.java */,
+				B596E5401B674CCA000D1074 /* Calculator.java */,
+				B596E53B1B674C22000D1074 /* Add.java */,
+				B534EA071B68A77B00CB2D56 /* Subtract.java */,
+				B596E5421B674EA2000D1074 /* operations.txt */,
+				B596E53C1B674C4E000D1074 /* Operation.java */,
+				B534EA081B68A88C00CB2D56 /* Creator.java */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		B596E5341B6747CB000D1074 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+			};
+			buildConfigurationList = B596E5371B6747CB000D1074 /* Build configuration list for PBXProject "Learning Calculator" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B596E5331B6747CB000D1074;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		B596E5381B6747CB000D1074 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		B596E5391B6747CB000D1074 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B596E5371B6747CB000D1074 /* Build configuration list for PBXProject "Learning Calculator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B596E5381B6747CB000D1074 /* Debug */,
+				B596E5391B6747CB000D1074 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B596E5341B6747CB000D1074 /* Project object */;
+}
