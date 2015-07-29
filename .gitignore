@@ -1,0 +1,4 @@
+*.class
+*.xcode*
+*.pbx*
+.DS_Store
