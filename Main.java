@@ -1,4 +1,7 @@
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
+import java.io.*;
 
 public class Main{
     
@@ -19,11 +22,25 @@ public class Main{
         }
         else if(s.equals("add")){
             System.out.println("   Let's walk through adding a new function to the Calculator");
-            System.out.println("   At each step, examples will be given showing what input would recreate the existing Add and Subtract operations.");
+            System.out.println("   For the first three steps, examples will be given showing what input would recreate the existing Add and Subtract operations.");
             Creator creator = new Creator();
             creator.main();
         }
         else{System.out.println("   Invalid option. Please choose one of the listed options"); getUserInput();}
+    }
+    
+    public static List<String> getOpList(){
+        Scanner opListFile = null;
+        try{
+            opListFile = new Scanner(new FileInputStream("operations.txt"));
+        }
+        catch(FileNotFoundException e){
+            System.out.println("Internal error. Cannot find operations file. Quitting.");
+            System.exit(0);
+        }
+        List<String> opList = new ArrayList<String>(0);
+        while(opListFile.hasNextLine()){opList.add(opListFile.nextLine());}
+        return opList;
     }
     
     public static void main(String[] args){

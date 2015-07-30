@@ -2,21 +2,13 @@ import java.util.Scanner;
 import java.io.*;
 import java.util.List;
 import java.util.ArrayList;
-import java.lang.reflect.Method;
 
 public class Calculator{
     private static Scanner opListFile;
     
     private static void playIntro(){
         System.out.println("   Here is what I can do:");
-        try{
-            opListFile = new Scanner(new FileInputStream("operations.txt"));
-        }
-        catch(FileNotFoundException e){
-            System.out.println("Internal error. Cannot find operations file.");
-        }
-        List<String> opList = new ArrayList<String>(0);
-        while(opListFile.hasNextLine()){opList.add(opListFile.nextLine());}
+        List<String> opList = Main.getOpList();
         for(String op : opList){System.out.println(op);}
         System.out.println("   What should we do?");
         getOperationFromUser(opList);
@@ -26,7 +18,7 @@ public class Calculator{
         Scanner in = new Scanner(System.in);
         String toDo = in.nextLine();
         if(!opList.contains(toDo)){
-            System.out.println("   Oops... I can't do that. Try inputting an operation from the above list");
+            System.out.println("   Oops... I can't do that. Try inputting an operation from the above list.");
             getOperationFromUser(opList);
         }
         else{
