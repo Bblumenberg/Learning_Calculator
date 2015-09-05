@@ -48,37 +48,35 @@ public class Creator{
             System.out.println("   It can either be repeated a set ammount of times -- enter an integer value");
             System.out.println("   or it can be repeated according to one of the input numbers -- type 'input'");
             try{numRepeat = in.nextInt(); loopByUser = false;}
-            catch(java.util.InputMismatchException e){
-                if(in.nextLine().equals("input")){
-                    System.out.println("   Ok. This operation will repeat itself according to the last number entered when it is run.");
-                    loopByUser = true;
-                }
-                else{System.out.println("   Input not recognized. Let's try that again.");
-                    getOperationPart1(in);}
+            catch(java.util.InputMismatchException e){;}
+            if(in.nextLine().equals("input")){
+                System.out.println("   Ok. This operation will repeat itself according to the last number entered when it is run.");
+                loopByUser = true;
             }
+            else if(loopByUser!=false){System.out.println("   Input not recognized. Let's try that again.");
+                getOperationPart1(in);}
         }
         else if(opType.equals("while")){
             System.out.println("   After each run through, this operation will compare it's result to something and repeat until a condition is met.");
             System.out.println("   What should the result be compared too? Either enter an integer value, or type 'input' to have the result compared to a user-entered value");
             try{numRepeat = in.nextInt(); loopByUser = false;}
-            catch(java.util.InputMismatchException e){
-                if(in.nextLine().equals("input")){
-                    System.out.println("   Ok. This operation will repeat itself according to the last number entered when it is run.");
-                    loopByUser = true;
-                }
-                else{System.out.println("   Input not recognized. Let's try that again.");
-                    getOperationPart1(in);}
+            catch(java.util.InputMismatchException e){;}
+            if(in.nextLine().equals("input")){
+                System.out.println("   Ok. This operation will repeat itself according to the last number entered when it is run.");
+                loopByUser = true;
             }
+            else if(loopByUser!=false){System.out.println("   Input not recognized. Let's try that again.");
+                getOperationPart1(in);}
             System.out.println("   How should the result be compared?");
             System.out.println("   Until both numbers are 'equal'");
             System.out.println("   Until the result is 'greater than' the other number");
             System.out.println("   Until the result is 'less than' the other number");
             System.out.println("   Until the numbers are 'not equal'");
             String compType = in.nextLine();
-            if(compType.equals("equal")){comp = "=";}
+            if(compType.equals("equal")){comp = "!=";}
             else if(compType.equals("greater than")){comp = "<";}
             else if(compType.equals("less than")){comp = ">";}
-            else if(compType.equals("not equal")){comp = "!=";}
+            else if(compType.equals("not equal")){comp = "=";}
             else{System.out.println("   Input not recognized. Let's go back.");
                 getOperationPart1(in);}
         }
@@ -135,13 +133,6 @@ public class Creator{
         }
         
         //Write the new operation file
-        File file = null;
-        try{
-            file = new File(name + ".java");
-            boolean bool = file.createNewFile();
-            System.out.println(bool);
-        }
-        catch(Exception e){System.out.println("Error creating file.");System.out.println(e.getMessage());}
         try(Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(name + ".java"), "utf-8"))){
             writer.write("import java.util.List;\n\npublic class " + name + " implements Operation{\n\n\tpublic int getNumArgs(){return " + Integer.toString(numArgs) + ";}\n\n\tpublic void getInfo(){\n\t\tSystem.out.println(\"   " + info + "\");\n\t}\n\n\tpublic String execute(List<Float> args){\n\t\tfloat result = 0;\n\t\t");
             if(opType.equals("for")){
