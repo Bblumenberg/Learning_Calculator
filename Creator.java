@@ -7,19 +7,21 @@ public class Creator{
 
     private String name;
     private int numArgs;
-    private String info;
     private String opType;
     private String op;
     private boolean loopByUser;
     private int numRepeat;
+    private String comp;
+    private String info;
     
     public void main(){
         Scanner in = new Scanner(System.in);
         name = getName(in);
         getOperationType(in);
         getOperationPart1(in);
-        getNumArgs(in);
+        getNumArgs();
         info = getInfo(in);
+        buildOperation(in);
     }
     
     private String getName(Scanner in){
@@ -73,10 +75,10 @@ public class Creator{
             System.out.println("   Until the result is 'less than' the other number");
             System.out.println("   Until the numbers are 'not equal'");
             String compType = in.nextLine();
-            if(compTYpe.equals("equal")){comp = "=";}
-            else if(compTYpe.equals("greater than")){comp = "<";}
-            else if(compTYpe.equals("less than")){comp = ">";}
-            else if(compTYpe.equals("not equal")){comp = "!=";}
+            if(compType.equals("equal")){comp = "=";}
+            else if(compType.equals("greater than")){comp = "<";}
+            else if(compType.equals("less than")){comp = ">";}
+            else if(compType.equals("not equal")){comp = "!=";}
             else{System.out.println("   Input not recognized. Let's go back.");
                 getOperationPart1(in);}
         }
@@ -101,15 +103,21 @@ public class Creator{
     }
     
     private void getNumArgs(){
-        Class cls = Class.forName(op);
-        operation = (Operation) cls.newInstance();
-        numArgs = operation.getNumArgs();
-        if(forByUser){numArgs += 1;}
+        try{
+            Class cls = Class.forName(op);
+            Operation operation = (Operation) cls.newInstance();
+            numArgs = operation.getNumArgs();
+            if(loopByUser){numArgs += 1;}
+        }
+        catch(Exception e){
+            System.out.println("Internal error encounered getting numArgs from parent operation.");
+            System.out.println(e.getMessage());
+        }
     }
     
     private String getInfo(Scanner in){
         System.out.println("   What help message should be displayed to the user?");
-        if(forByUser){System.out.println("   Remember that the last number input will be used to tell the operation how many times it should repeat.");}
+        if(loopByUser){System.out.println("   Remember that the last number input will be used to tell the operation how many times it should repeat.");}
         System.out.println("   (i.e. Enter two numbers to add, pressing enter after each.");
         System.out.println("   (i.e. Enter two numbers to subtract, pressing enter after each. The second number will be subtracted from the first number.");
         return in.nextLine();
@@ -127,6 +135,13 @@ public class Creator{
         }
         
         //Write the new operation file
+        File file = null;
+        try{
+            file = new File(name + ".java");
+            boolean bool = file.createNewFile();
+            System.out.println(bool);
+        }
+        catch(Exception e){System.out.println("Error creating file.");System.out.println(e.getMessage());}
         try(Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(name + ".java"), "utf-8"))){
             writer.write("import java.util.List;\n\npublic class " + name + " implements Operation{\n\n\tpublic int getNumArgs(){return " + Integer.toString(numArgs) + ";}\n\n\tpublic void getInfo(){\n\t\tSystem.out.println(\"   " + info + "\");\n\t}\n\n\tpublic String execute(List<Float> args){\n\t\tfloat result = 0;\n\t\t");
             if(opType.equals("for")){
